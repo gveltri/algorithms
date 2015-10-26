@@ -14,6 +14,10 @@ gem install rspec
 - dynamic edit distance
 - matrix multiplier
 
+## Algorithms for which there aren't (yet) tests
+
+- breadth first search
+- insertion sort
 
 ## Algorithms to Implement
 
