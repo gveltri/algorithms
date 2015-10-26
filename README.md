@@ -6,7 +6,7 @@ gem install rspec
 ```
 
 
-## Algorithms for which there are tests
+### Algorithms for which there are tests
 
 - memoized fibonacci
 - dynamic fibonacci
@@ -14,12 +14,12 @@ gem install rspec
 - dynamic edit distance
 - matrix multiplier
 
-## Algorithms for which there aren't (yet) tests
+### Algorithms for which there aren't (yet) tests
 
 - breadth first search
 - insertion sort
 
-## Algorithms to Implement
+### Algorithms to Implement
 
 - merge sort
 - knapsack
