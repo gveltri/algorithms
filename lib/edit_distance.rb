@@ -1,4 +1,3 @@
-require 'pry'
 class EditDistance
 
   
@@ -21,8 +20,6 @@ class EditDistance
     puts "Tabulation is #{delta1/delta*100} percent faster."
   end
 
-  private
-
   def solve_recursively(string_1, string_2)
 
     case
@@ -44,7 +41,6 @@ class EditDistance
   def solve_with_table
     return @string_2.length if @string_1.length == 0
     return @string_1.length if @string_2.length == 0
-
     build_matrix.last.last
   end
 
@@ -58,8 +54,6 @@ class EditDistance
       end
     end
     
-    print_matrix(matrix)
-
     matrix.each_with_index do  |row, i|
       row.each_with_index do |value, j|
         
@@ -69,9 +63,9 @@ class EditDistance
         when j == 0
           matrix[i][j] = i
         when @string_1[i-1] ==  @string_2[j-1] && j < matrix.length && i < row.length 
-              matrix[i][j] = [matrix[i-1][j-1],
-                     matrix[i-1][j],
-                     matrix[i][j-1]].min
+          matrix[i][j] = [matrix[i-1][j-1],
+                          1 + matrix[i-1][j],
+                          1 + matrix[i][j-1]].min
         else
           matrix[i][j] = 1 + [matrix[i-1][j-1],
                               matrix[i-1][j],
@@ -80,8 +74,9 @@ class EditDistance
       end
     end
 
-    puts "final output:"
-    print_matrix(matrix)
+    # uncomment the next two lines to see the matrix
+    # puts "insert/delete/replace matrix:"
+    # print_matrix(matrix)
     return matrix
 
 
@@ -89,7 +84,7 @@ class EditDistance
 
   
   def print_matrix(matrix)
-    output = ""
+    output = "\n\n"
     matrix.each do |row|
       output << '| '
       row.each do |column_of_row|
@@ -97,10 +92,8 @@ class EditDistance
       end
       output << " |\n"
     end
-    puts output + "\n\n\n\n"
+    puts output + "\n\n"
   end
 
 end
-
-EditDistance.new('gary', 'martin').solve
 

@@ -34,6 +34,3 @@ class Fibonacci
   end
   
 end
-
-
-Fibonacci.new(1000).solve

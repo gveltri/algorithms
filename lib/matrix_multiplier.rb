@@ -18,7 +18,7 @@ class MatrixMultiplier
           output_matrix[row_index].push(compute_dot_product(row,column))
         end
       end
-      print_nicely(output_matrix)
+      output_matrix
     end
   end
 
@@ -60,14 +60,3 @@ class MatrixMultiplier
     puts output
   end
 end
-
-
-matrix_2 = [[0],[5],[6]]
-matrix_1 = [[0,5,6]]
-  
-puts "\n\n\n"
-MatrixMultiplier.new(matrix_1,matrix_2).print_nicely(matrix_1)
-puts "\n\n\n"
-MatrixMultiplier.new(matrix_1,matrix_2).print_nicely(matrix_2)
-puts "\n\n\n"
-MatrixMultiplier.new(matrix_1,matrix_2).solve
