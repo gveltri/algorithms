@@ -8,9 +8,5 @@ class AVLNode
     @left = nil
     @right = nil
   end
-
-  def self.to_string(root)
-    # draw nicely using BFS
-  end
   
 end

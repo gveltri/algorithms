@@ -2,33 +2,39 @@ require_relative 'AVL_node'
 
 class AVLTree
 
-  attr_reader :tree, :array 
+  attr_reader :root_node, :array 
 
   def initialize(array)
     @array = array
-    @tree = create_tree_from_sorted(array)
+    @root_node = create_tree_from_sorted(array)
   end
 
   def create_tree_from_sorted(array)
     
     mid_index = (array.length/2).floor
-    root_node = AVLNode.new(array[mid-index])
+    root_node = AVLNode.new(array[mid_index])
     
-    if array.length > 0
-      assign_parents_recursively(array, 0, array.length-1, parent)
-            
-    end
-
+    assign_parents_recursively(array, 0, mid_index-1, root_node) if (mid_index-1) >= 0
+    assign_parents_recursively(array, mid_index+1, array.length-1, root_node) if mid_index+ 1 < array.length
+    
     root_node
   end
 
   private
 
   def assign_parents_recursively(array, starting_index, last_index, parent)
-    mid_index = (array.length/2).floor
-    current_node  = AVLNode.new(array[mid-index], parent)
-
     
+    mid_index = ((starting_index+last_index)/2).floor
+    current_node  = AVLNode.new(array[mid_index], parent)
+
+    assign_parents_recursively(array, starting_index, mid_index-1, current_node) if (mid_index-1) >= starting_index
+    assign_parents_recursively(array, mid_index+1, last_index, current_node) if mid_index+ 1 <= last_index
+    
+  end
+
+  def to_string
+    current_node = @root_node
+    height = Math.log2(@array.length).floor
   end
 
 end
