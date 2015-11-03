@@ -33,8 +33,25 @@ class AVLTree
   end
 
   def to_string
-    current_node = @root_node
+    
     height = Math.log2(@array.length).floor
+    node_queue[@root_node]
+    
+    ((@array.length/2).floor).times { output << " " }
+    output << "#{@root_node.value}"
+    ((@array.length/2).floor).times { output << " " }
+    output << "\n"
+
+    if array.length > 1
+      level = 1
+      
+      while !node_queue.empty?
+        current_node = node_queue.shift
+        
+      end
+    end
+    
   end
+  
 
 end
