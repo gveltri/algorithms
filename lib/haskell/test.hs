@@ -21,3 +21,18 @@ fiblist 0 = [1]
 fiblist 1 = [1,1]
 fiblist x = map fibonacci [1..x]
 
+-- cipher :: [Char] -> Int -> [Char]
+-- cipher [] _ = []
+-- cipher (x:xs) n = (encode x n) : (cipher xs n)
+
+-- encode :: Char -> Int -> Char
+-- encode x n = let alph = ['a'.. 'z'] ++ ['A' .. 'Z']
+--                  index =
+
+indexOf :: (Eq a) => [a] -> a -> Int
+indexOf [] _ = 1
+indexOf (x:xs) target  
+    |x == target = 1 + (indexOf xs) target
+    |otherwise = 0
+                                                
+                                          
