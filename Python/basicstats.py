@@ -1,14 +1,27 @@
+import math
 class BasicStats:
 
     def __init__(self, array):
         self.array = array
         self.array.sort()
-        
+                
     def printValues(self):
         print 'size: ' + str(len(self.array))
         print 'median: ' + str(self.Median())
         print 'mode: ' + str(self.Mode())
         print 'mean: ' + str(self.Mean())
+        print 'range: ' + str(self.Range())
+        print 'max: ' + str(self.Max())
+        print 'min: ' + str(self.Min())
+
+    def Max(self):
+        return self.array[len(self.array)-1]
+
+    def Min(self):
+        return self.array[0]
+
+    def Range(self):
+        return abs(self.Max()-self.Min())
         
     def Median(self):
         array = self.array
@@ -41,5 +54,5 @@ class BasicStats:
                     max_key = i
         return max_key
 
-obj = BasicStats([6,9,7,10,5,3,3,2])
+obj = BasicStats([x**2*math.cos(x) for x in range(10)])
 obj.printValues()
