@@ -1,4 +1,4 @@
-import math
+import math, random
 class BasicStats:
 
     def __init__(self, array):
@@ -13,7 +13,21 @@ class BasicStats:
         print 'range: ' + str(self.Range())
         print 'max: ' + str(self.Max())
         print 'min: ' + str(self.Min())
+        print 'population variance: ' + str(self.Variance())
+        print 'standard deviation: ' + str(self.standardDeviation())
+        print ''
+        print 'begin sampling'
+        for i in range(5,10):
+            sample = self.Sample(i)
+            print '--------------'
+            print 'sample #' + str(i-4) + ' has size ' + str(i) + '.'
+            print 'median: ' + str(sample.Median())
+            print 'mode: ' + str(sample.Mode())
+            print 'mean: ' + str(sample.Mean())
+            print 'sample variance: ' + str(sample.sampleVariance())
+            print 'normal variance(bad): ' + str(sample.Variance())
 
+            
     def Max(self):
         return self.array[len(self.array)-1]
 
@@ -54,5 +68,27 @@ class BasicStats:
                     max_key = i
         return max_key
 
-obj = BasicStats([x**2*math.cos(x) for x in range(10)])
+    def Variance(self):
+        return sum([ (x-self.Mean())**2 for x in self.array ])/len(self.array)
+
+    def standardDeviation(self):
+        return math.sqrt(self.Variance())
+
+    def Sample(self, size):
+        array = self.array
+        sample_array = []
+        index = 0
+        for i in range(0,size):
+            index = random.randint(0,len(array)-1)
+            sample_array.append(array[index])
+            array = array[:index] + array[(index+1):]
+        sample_array.sort()
+        sample = BasicStats(sample_array)
+        return sample
+
+    def sampleVariance(self):
+        return sum([ (x-self.Mean())**2 for x in self.array ])/(len(self.array)-1)
+
+obj = BasicStats([x for x in range(0,100)])
 obj.printValues()
+
