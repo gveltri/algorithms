@@ -16,18 +16,31 @@ class BasicStats:
         print 'population variance: ' + str(self.Variance())
         print 'standard deviation: ' + str(self.standardDeviation())
         print ''
+        print ''
+        
+    def printSamples(self):
         print 'begin sampling'
-        for i in range(5,10):
-            sample = self.Sample(i)
+        sum_sample = 0
+        sum_normal = 0
+        for i in range(1,11):
+            sample = self.Sample(20)
             print '--------------'
-            print 'sample #' + str(i-4) + ' has size ' + str(i) + '.'
+            print 'sample #' + str(i) + ' has size ' + str(i) + '.'
             print 'median: ' + str(sample.Median())
             print 'mode: ' + str(sample.Mode())
             print 'mean: ' + str(sample.Mean())
             print 'sample variance: ' + str(sample.sampleVariance())
-            print 'normal variance(bad): ' + str(sample.Variance())
+            print 'normal variance (bad): ' + str(sample.Variance())
+            sum_sample += sample.sampleVariance()
+            sum_normal += sample.Variance()
+            print '--------------'
+            print''
+            print 'sample variance average: ' + str(sum_sample/10)
+            print '  difference from the pop variance: ' + str(abs(self.Variance()-(sum_sample/10)))
+            print 'normal variance average: ' + str(sum_normal/10)
+            print ' difference from the pop variance: ' + str(abs(self.Variance()-(sum_normal/10)))
 
-            
+        
     def Max(self):
         return self.array[len(self.array)-1]
 
@@ -89,6 +102,6 @@ class BasicStats:
     def sampleVariance(self):
         return sum([ (x-self.Mean())**2 for x in self.array ])/(len(self.array)-1)
 
-obj = BasicStats([x for x in range(0,100)])
+obj = BasicStats([x for x in range(0,101)] + [x for x in range(40,150)])
+obj.printSamples()
 obj.printValues()
-
